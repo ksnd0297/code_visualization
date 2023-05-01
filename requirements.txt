@@ -1,0 +1,4 @@
+svg-turtle==0.4.1
+reportlab==3.6.13
+svg2rlg==0.3
+svglib==1.5.1

@@ -1,9 +1,11 @@
-import turtle
+from svg_turtle import SvgTurtle
+from svglib.svglib import svg2rlg
+from reportlab.graphics import renderPM
 
 cpp_keywords = ['while', 'break', 'else' ,'if', 'for', 'int', 'double', 'char', 'new', 'void']
 
 class Turtle:
-    T = turtle.Turtle()
+    T = SvgTurtle(1024, 1024)
     T.speed(0)
 
     
@@ -18,6 +20,17 @@ class Turtle:
         'g':0.0,
         'b':0.0
     }
+
+    def __init__(self):
+        self.T.clear()
+        self.size = 20
+        self.color = {
+        'r':0.0,
+        'g':0.0,
+        'b':0.0
+        }
+        self.length = 200
+        self.angle = 360 // len(cpp_keywords)
 
     keywordsPosition = {}
 
@@ -55,9 +68,12 @@ class Turtle:
         
         self.T.pencolor(self.rgb_to_hex(self.color['r'], self.color['g'], self.color['b']))
 
-        self.color['r'] += 10
+        self.color['r'] += 5
 
         
 
-    def done(self):
-        turtle.done()
+    def done(self, file):
+        self.T.save_as("image/{}.svg".format(file))
+
+        drawing = svg2rlg("image/{}.svg".format(file))
+        renderPM.drawToFile(drawing, "image/{}.png".format(file), fmt="PNG")

@@ -1,29 +1,31 @@
-import sys
+import os
 
 from extract_keywords import extract_cpp_keywords
 from myTurtle import Turtle
 
-if len(sys.argv) != 3:
-    print("python3 main.py [cpp 파일 1 경로] [cpp 파일 2 경로]")
-    sys.exit()
-
-
-code1_path = sys.argv[1]
-code2_path = sys.argv[2]
-
 # cpp_keywords = ['while', 'break', 'else' ,'if', 'for', 'int', 'double', 'char', 'new', 'void']
 
-code1 = open("{}.cpp".format(code1_path), "r").read()
-code2 = open("{}.cpp".format(code1_path), "r").read()
+codeList = os.listdir("code")
 
-code1_keywords = extract_cpp_keywords(code1)
-code2_keywords = extract_cpp_keywords(code2)
-print(code1_keywords)
+for file in codeList:
+    code = open("{}".format("code/" + file), "r").read()
 
-T = Turtle()
-T.setKeywordsPosition(True)
+    code_keywords = extract_cpp_keywords(code)
 
-for i in range(0, len(code1_keywords) - 1):
-    T.drawLine(code1_keywords[i], code1_keywords[i+1])
+    T = Turtle()
+    # True : 키워드 표시
+    # False : 키워드 미표시
+    T.setKeywordsPosition(False)
 
-T.done()
+    for i in range(0, len(code_keywords) - 1):
+        T.drawLine(code_keywords[i], code_keywords[i+1])
+
+    T.done(file)
+
+imageList = os.listdir("image")
+
+for file in imageList:
+    filename = file.split('.')[2]
+    
+    if(filename == "svg"):
+        os.remove("image/{}".format(file))
