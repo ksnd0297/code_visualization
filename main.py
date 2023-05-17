@@ -23,7 +23,7 @@ for file in codeList:
     T.done(file)
 
 imageList = os.listdir("image")
-print(imageList)
+# print(imageList)
 for file in imageList:
     if len(file.split('.')) == 3:
         filename = file.split('.')[2]
