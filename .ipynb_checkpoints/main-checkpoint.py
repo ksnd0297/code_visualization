@@ -8,6 +8,7 @@ from myTurtle import Turtle
 codeList = os.listdir("code")
 
 for file in codeList:
+    if file.split('.')[-1] != 'cpp': continue
     code = open("{}".format("code/" + file), "r").read()
 
     code_keywords = extract_cpp_keywords(code)
@@ -23,10 +24,11 @@ for file in codeList:
     T.done(file)
 
 imageList = os.listdir("image")
-# print(imageList)
-for file in imageList:
-    if len(file.split('.')) == 3:
-        filename = file.split('.')[2]
-    
-    if(filename == "svg"):
-        os.remove("image/{}".format(file))
+# i = 0
+# for file in imageList:
+#     if len(file.split('.')) == 3:
+#         print(i, file)
+#         i+=1
+#         filename = file.split('.')[2]
+#         if(filename == "svg"):
+#             os.remove("image/{}".format(file))

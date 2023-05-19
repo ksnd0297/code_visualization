@@ -24,11 +24,11 @@ for file in codeList:
     T.done(file)
 
 imageList = os.listdir("image")
-i = 0
-for file in imageList:
-    if len(file.split('.')) == 3:
-        print(i, file)
-        i+=1
-        filename = file.split('.')[2]
-        if(filename == "svg"):
-            os.remove("image/{}".format(file))
+# i = 0
+# for file in imageList:
+#     if len(file.split('.')) == 3:
+#         print(i, file)
+#         i+=1
+#         filename = file.split('.')[2]
+#         if(filename == "svg"):
+#             os.remove("image/{}".format(file))
