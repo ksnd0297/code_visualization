@@ -1,6 +1,7 @@
 from svg_turtle import SvgTurtle
 from svglib.svglib import svg2rlg
 from reportlab.graphics import renderPM
+import cairosvg
 
 cpp_keywords = ['while', 'break', 'else' ,'if', 'for', 'int', 'double', 'char', 'new', 'void']
 
@@ -74,6 +75,10 @@ class Turtle:
 
     def done(self, file):
         self.T.save_as("image/{}.svg".format(file))
-
         drawing = svg2rlg("image/{}.svg".format(file))
-        renderPM.drawToFile(drawing, "image/{}.png".format(file), fmt="PNG")
+        # renderPM.drawToFile(drawing, "image/{}.png".format(file), fmt="PNG")
+        
+        input_file = './image/' + file + '.svg'
+        output_file = './image/' + file + '.png'
+        cairosvg.svg2png(url=input_file, write_to=output_file)
+        # print(file)
