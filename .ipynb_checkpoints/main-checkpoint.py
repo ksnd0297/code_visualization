@@ -59,12 +59,14 @@ for file in imageList:
         if(filename == "svg"):
             os.remove("image/{}".format(file))
 
-codeList = os.listdir("image")
+# codeList = os.listdir("image")
 imagePath = os.getcwd() + '/image'
 imageList = os.listdir(imagePath)
 
 for fileName in imageList:
     if len(fileName.split('.')) == 3:
-        crop_image(imagePath, fileName, 0.6)
+        # image파일 경로, image파일 이름, 이미지 사이즈 퍼센트
+        # 이미지퍼센트는 60%를 남긴다는 뜻
+        crop_image(imagePath, fileName, 0.6) 
     
 

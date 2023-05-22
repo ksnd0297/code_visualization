@@ -9,6 +9,8 @@ from myTurtle import Turtle
 
 codeList = os.listdir("code")
 
+# /code 폴더의 cpp 코드들 다 가져와서 turtle 로 그림 그리는 코드 
+# 여기서 svg랑 png 한 세트씩 만들어짐
 for file in codeList:
     if file.split('.')[-1] != 'cpp': continue
     code = open("{}".format("code/" + file), "r").read()
@@ -25,6 +27,7 @@ for file in codeList:
 
     T.done(file)
 
+# 이미지 자르는 함수
 def crop_image(image_path, file_name, keep_ratio):
     # 이미지 로드
     file_path = image_path + '/' + file_name
@@ -50,7 +53,8 @@ def crop_image(image_path, file_name, keep_ratio):
     
     
 imageList = os.listdir("image")
-# i = 0
+
+# 아래 for 문은 /image 폴더에서 추후 사용하지 않을 svg 삭제하는 부분
 for file in imageList:
     if len(file.split('.')) == 3:
         # print(i, file)
@@ -59,12 +63,15 @@ for file in imageList:
         if(filename == "svg"):
             os.remove("image/{}".format(file))
 
-codeList = os.listdir("image")
+
 imagePath = os.getcwd() + '/image'
 imageList = os.listdir(imagePath)
 
+# 아래 for 문은 crop_image 함수 호출하여 이미지 사이즈 리사이징 하는 부분
 for fileName in imageList:
     if len(fileName.split('.')) == 3:
-        crop_image(imagePath, fileName, 0.6)
+        # image파일 경로, image파일 이름, 이미지 사이즈 퍼센트
+        # 이미지퍼센트는 60%를 남긴다는 뜻
+        crop_image(imagePath, fileName, 0.6) 
     
 
